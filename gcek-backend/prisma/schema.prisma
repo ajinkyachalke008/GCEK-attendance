@@ -1,0 +1,428 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  HOD
+  ADMIN
+}
+
+enum Department {
+  ELECTRICAL
+  MECHANICAL
+  CIVIL
+  IT
+  COMPUTER
+  ELECTRONICS
+}
+
+enum ClassType {
+  THEORY
+  PRACTICAL
+  TUTORIAL
+}
+
+enum SessionStatus {
+  ACTIVE
+  ENDED
+  CANCELLED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  PROXY_FLAGGED
+  MANUAL_OVERRIDE
+}
+
+enum MarkedBy {
+  QR_SCAN
+  TEACHER_MANUAL
+  SYSTEM
+}
+
+enum AssignmentType {
+  ASSIGNMENT
+  PRACTICAL
+  PROJECT
+  VIVA
+  QUIZ
+}
+
+enum SubmissionStatus {
+  SUBMITTED
+  GRADED
+  RETURNED
+  RESUBMIT_REQUESTED
+}
+
+enum DayOfWeek {
+  MON
+  TUE
+  WED
+  THU
+  FRI
+  SAT
+}
+
+enum FileType {
+  PDF
+  PPT
+  VIDEO_LINK
+  DOC
+  IMAGE
+  OTHER
+}
+
+enum NoticeCategory {
+  ACADEMIC
+  EXAM
+  EVENT
+  PLACEMENT
+  GENERAL
+  URGENT
+}
+
+enum ExamType {
+  UT1
+  UT2
+  MID_TERM
+  PRELIM
+  PRACTICAL_EXAM
+  ASSIGNMENT_AVG
+}
+
+enum EventType {
+  HOLIDAY
+  EXAM
+  SUBMISSION_DEADLINE
+  COLLEGE_EVENT
+  SEMESTER_START
+  SEMESTER_END
+}
+
+enum GrievanceCategory {
+  ATTENDANCE
+  MARKS
+  FACILITIES
+  HARASSMENT
+  ACADEMIC
+  OTHER
+}
+
+enum GrievanceStatus {
+  OPEN
+  IN_REVIEW
+  RESOLVED
+  CLOSED
+}
+
+enum PlacementStatus {
+  UPCOMING
+  OPEN
+  CLOSED
+  COMPLETED
+}
+
+enum AppStatus {
+  APPLIED
+  SHORTLISTED
+  SELECTED
+  REJECTED
+}
+
+enum NotificationType {
+  QR_ACTIVE
+  DEADLINE_REMINDER
+  RISK_ALERT
+  NOTICE
+  MARKS_UPDATED
+  PLACEMENT
+  GRIEVANCE_UPDATE
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  password_hash String
+  role          Role
+  department    Department
+  year          Int?      
+  division      String?
+  roll_number   String?   @unique
+  phone         String?
+  device_id     String?
+  fcm_token     String?
+  avatar_url    String?
+  is_active     Boolean   @default(true)
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+
+  classes_taught Class[]    @relation("TeacherClasses")
+  enrollments    Enrollment[]
+  sessions       Session[]  @relation("TeacherSessions")
+  assignments    Assignment[] @relation("CreatedAssignments")
+  submissions    Submission[]
+  study_materials StudyMaterial[]
+  notices        Notice[]
+  internal_marks_entered InternalMark[] @relation("EnteredInternalMarks")
+  internal_marks InternalMark[] @relation("StudentInternalMarks")
+  academic_calendar AcademicCalendar[] @relation("AdminEvents")
+  grievances     Grievance[] @relation("StudentGrievances")
+  grievances_assigned Grievance[] @relation("AssignedGrievances")
+  placements_posted Placement[]
+  placement_applications PlacementApplication[]
+  notifications  Notification[]
+  attendance     Attendance[]
+}
+
+model Class {
+  id            String    @id @default(cuid())
+  subject_name  String
+  subject_code  String
+  teacher_id    String
+  teacher       User      @relation("TeacherClasses", fields: [teacher_id], references: [id])
+  department    Department
+  year          Int
+  division      String
+  semester      Int
+  class_code    String    @unique
+  type          ClassType
+  credit_hours  Int
+  is_active     Boolean   @default(true)
+  created_at    DateTime  @default(now())
+
+  enrollments   Enrollment[]
+  sessions      Session[]
+  assignments   Assignment[]
+  timetables    Timetable[]
+  study_materials StudyMaterial[]
+  internal_marks InternalMark[]
+}
+
+model Enrollment {
+  id          String   @id @default(cuid())
+  class_id    String
+  class       Class    @relation(fields: [class_id], references: [id])
+  student_id  String
+  student     User     @relation(fields: [student_id], references: [id])
+  enrolled_at DateTime @default(now())
+  is_active   Boolean  @default(true)
+
+  @@unique([class_id, student_id])
+}
+
+model Session {
+  id                String        @id @default(cuid())
+  class_id          String
+  class             Class         @relation(fields: [class_id], references: [id])
+  teacher_id        String
+  teacher           User          @relation("TeacherSessions", fields: [teacher_id], references: [id])
+  start_time        DateTime      @default(now())
+  end_time          DateTime?
+  qr_token          String
+  qr_refresh_count  Int           @default(0)
+  status            SessionStatus @default(ACTIVE)
+  geo_lat           Float?
+  geo_lng           Float?
+  geo_radius_meters Float         @default(150)
+  total_present     Int           @default(0)
+  notes             String?
+
+  attendances       Attendance[]
+}
+
+model Attendance {
+  id                  String   @id @default(cuid())
+  session_id          String
+  session             Session  @relation(fields: [session_id], references: [id])
+  student_id          String
+  student             User     @relation(fields: [student_id], references: [id])
+  timestamp           DateTime @default(now())
+  status              AttendanceStatus
+  confidence_score    Float
+  device_id           String
+  geo_lat             Float?
+  geo_lng             Float?
+  geo_distance_meters Float?
+  proxy_risk_score    Float    @default(0.0)
+  proxy_reason        String?
+  marked_by           MarkedBy
+
+  @@unique([session_id, student_id])
+}
+
+model Assignment {
+  id                   String   @id @default(cuid())
+  class_id             String
+  class                Class    @relation(fields: [class_id], references: [id])
+  created_by           String
+  creator              User     @relation("CreatedAssignments", fields: [created_by], references: [id])
+  title                String
+  description          String
+  deadline             DateTime
+  max_marks            Int
+  type                 AssignmentType
+  file_url             String?
+  is_published         Boolean  @default(false)
+  allow_late           Boolean  @default(false)
+  late_penalty_percent Float    @default(0)
+  ai_summary           String?
+  created_at           DateTime @default(now())
+
+  submissions          Submission[]
+}
+
+model Submission {
+  id              String   @id @default(cuid())
+  assignment_id   String
+  assignment      Assignment @relation(fields: [assignment_id], references: [id])
+  student_id      String
+  student         User     @relation(fields: [student_id], references: [id])
+  file_url        String
+  file_name       String
+  submitted_at    DateTime @default(now())
+  is_late         Boolean  @default(false)
+  late_by_minutes Int      @default(0)
+  status          SubmissionStatus @default(SUBMITTED)
+  marks_obtained  Float?
+  teacher_feedback String?
+  graded_at       DateTime?
+
+  @@unique([assignment_id, student_id])
+}
+
+model Timetable {
+  id             String    @id @default(cuid())
+  class_id       String
+  class          Class     @relation(fields: [class_id], references: [id])
+  day_of_week    DayOfWeek
+  start_time     String
+  end_time       String
+  room_number    String?
+  lecture_number Int
+}
+
+model StudyMaterial {
+  id             String    @id @default(cuid())
+  class_id       String
+  class          Class     @relation(fields: [class_id], references: [id])
+  uploaded_by    String
+  uploader       User      @relation(fields: [uploaded_by], references: [id])
+  title          String
+  description    String?
+  file_url       String
+  file_type      FileType
+  unit_number    Int?
+  tags           String[]
+  download_count Int       @default(0)
+  created_at     DateTime  @default(now())
+}
+
+model Notice {
+  id                String         @id @default(cuid())
+  posted_by         String
+  poster            User           @relation(fields: [posted_by], references: [id])
+  title             String
+  content           String
+  category          NoticeCategory
+  target_department String?
+  target_year       Int?
+  is_pinned         Boolean        @default(false)
+  attachment_url    String?
+  expires_at        DateTime?
+  views             Int            @default(0)
+  created_at        DateTime       @default(now())
+}
+
+model InternalMark {
+  id             String    @id @default(cuid())
+  student_id     String
+  student        User      @relation("StudentInternalMarks", fields: [student_id], references: [id])
+  class_id       String
+  class          Class     @relation(fields: [class_id], references: [id])
+  exam_type      ExamType
+  marks_obtained Float
+  max_marks      Float
+  entered_by     String
+  teacher        User      @relation("EnteredInternalMarks", fields: [entered_by], references: [id])
+  created_at     DateTime  @default(now())
+}
+
+model AcademicCalendar {
+  id          String    @id @default(cuid())
+  event_name  String
+  event_type  EventType
+  start_date  DateTime
+  end_date    DateTime?
+  description String?
+  created_by  String
+  creator     User      @relation("AdminEvents", fields: [created_by], references: [id])
+}
+
+model Grievance {
+  id              String             @id @default(cuid())
+  student_id      String
+  student         User               @relation("StudentGrievances", fields: [student_id], references: [id])
+  title           String
+  description     String
+  category        GrievanceCategory
+  status          GrievanceStatus    @default(OPEN)
+  assigned_to     String?
+  assignee        User?              @relation("AssignedGrievances", fields: [assigned_to], references: [id])
+  resolution_note String?
+  created_at      DateTime           @default(now())
+  updated_at      DateTime           @updatedAt
+}
+
+model Placement {
+  id                     String               @id @default(cuid())
+  company_name           String
+  role                   String
+  package_lpa            Float
+  eligible_departments   String[]
+  eligible_years         Int[]
+  min_cgpa               Float?
+  min_attendance_percent Float                @default(75.0)
+  drive_date             DateTime
+  application_deadline   DateTime
+  description            String
+  jd_url                 String?
+  status                 PlacementStatus
+  posted_by              String
+  poster                 User                 @relation(fields: [posted_by], references: [id])
+
+  applications           PlacementApplication[]
+}
+
+model PlacementApplication {
+  id           String      @id @default(cuid())
+  placement_id String
+  placement    Placement   @relation(fields: [placement_id], references: [id])
+  student_id   String
+  student      User        @relation(fields: [student_id], references: [id])
+  status       AppStatus   @default(APPLIED)
+  applied_at   DateTime    @default(now())
+
+  @@unique([placement_id, student_id])
+}
+
+model Notification {
+  id         String           @id @default(cuid())
+  user_id    String
+  user       User             @relation(fields: [user_id], references: [id])
+  title      String
+  body       String
+  type       NotificationType
+  data       String?          // JSON payload
+  is_read    Boolean          @default(false)
+  created_at DateTime         @default(now())
+}
