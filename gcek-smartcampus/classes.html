@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GCEK SmartCampus - Class View</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2B4BBA",
+              "secondary": "#F5CE53",
+              "accent": "#00D2FD",
+              "error": "#D32F2F",
+              "surface": "#F8FAFC",
+              "on-surface": "#0F172A",
+              "on-surface-variant": "#64748B",
+              "outline": "#E2E8F0",
+              "deep-blue": "#0A1D37"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .academic-card { background: #FFFFFF; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); transition: all 0.3s ease; position: relative; }
+      .academic-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(43, 75, 186, 0.1); }
+      body { min-height: 100dvh; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body">
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-white/90 backdrop-blur-md border-b border-outline">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-deep-blue flex items-center justify-center text-white font-bold font-headline">G</div>
+<div>
+<p class="text-[10px] font-bold text-primary uppercase tracking-widest">GCEK Karad</p>
+<h1 class="text-lg font-headline font-bold text-on-surface">Ajinkya Patil</h1>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<section class="mb-10 flex flex-col items-start">
+<span class="text-primary font-headline font-semibold tracking-widest text-[0.75rem] uppercase">Academic Performance</span>
+<h2 class="text-3xl md:text-5xl font-headline font-bold text-deep-blue leading-tight mb-4">Subject Breakdown</h2>
+<a href="assignments.html" class="bg-primary hover:bg-deep-blue text-white px-6 py-2 rounded-full font-bold shadow transition-colors text-sm">View Assignments Portal →</a>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="academic-card p-6 rounded-2xl flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-xl bg-deep-blue flex items-center justify-center text-white"><span class="material-symbols-outlined">settings_input_antenna</span></div>
+<div class="text-right">
+<span class="text-primary font-headline text-2xl font-bold">88%</span>
+<p class="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest">Attendance</p>
+</div>
+</div>
+<h3 class="text-xl font-headline font-bold mb-1 text-deep-blue">Signals &amp; Systems</h3>
+<p class="text-on-surface-variant text-sm font-medium">Prof. S. S. Patil</p>
+</div>
+<div class="mt-8">
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[88%] transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<div class="academic-card p-6 rounded-2xl flex flex-col justify-between border-l-4 border-l-error">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center text-error"><span class="material-symbols-outlined">architecture</span></div>
+<div class="text-right">
+<span class="text-error font-headline text-2xl font-bold">64%</span>
+</div>
+</div>
+<h3 class="text-xl font-headline font-bold mb-1 text-deep-blue">Concrete Technology</h3>
+<p class="text-on-surface-variant text-sm font-medium">Prof. A. B. Landage</p>
+</div>
+<div class="mt-8">
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="h-full bg-error w-[64%] transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<div class="academic-card p-6 rounded-2xl flex flex-col justify-between relative overflow-hidden">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-xl bg-deep-blue flex items-center justify-center text-white"><span class="material-symbols-outlined">biotech</span></div>
+<div class="text-right">
+<span class="text-primary font-headline text-2xl font-bold">100%</span>
+</div>
+</div>
+<h3 class="text-xl font-headline font-bold mb-1 text-deep-blue">Fluid Mechanics Lab</h3>
+<p class="text-on-surface-variant text-sm font-medium">Prof. M. N. Deshmukh</p>
+</div>
+<div class="mt-8">
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[100%] transition-all duration-500"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center h-16 bg-white/95 backdrop-blur-md border-t border-slate-200">
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="index.html">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-bold mt-1">Home</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="scanner.html">
+    <span class="material-symbols-outlined">qr_code_scanner</span>
+    <span class="text-[10px] font-bold mt-1">Scan</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-primary" href="classes.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+    <span class="text-[10px] font-bold mt-1">Classes</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="analytics.html">
+    <span class="material-symbols-outlined">leaderboard</span>
+    <span class="text-[10px] font-bold mt-1">Analytics</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="teacher.html">
+    <span class="material-symbols-outlined">person</span>
+    <span class="text-[10px] font-bold mt-1">Faculty</span>
+  </a>
+</nav>
+</body></html>
