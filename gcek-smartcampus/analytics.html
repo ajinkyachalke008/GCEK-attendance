@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GCEK SmartCampus Analytics - Academic Excellence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2563eb",
+                        "primary-dark": "#1e40af",
+                        "secondary": "#fbbf24",
+                        "on-surface": "#1e293b",
+                        "on-surface-variant": "#64748b",
+                        "surface": "#ffffff",
+                        "background": "#f8fafc",
+                        "outline": "#e2e8f0",
+                        "error": "#dc2626"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { min-height: 100dvh; background-image: radial-gradient(at top left, #f1f5f9 0%, transparent 50%), radial-gradient(at bottom right, #eff6ff 0%, transparent 50%); }
+        .stats-card { background: white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); border: 1px solid #e2e8f0; transition: all 0.3s ease; }
+        .glow-card { position: relative; }
+        .glow-card::after { content: ''; position: absolute; inset: -1px; background: linear-gradient(45deg, rgba(37, 99, 235, 0.15), transparent, rgba(251, 191, 36, 0.15)); border-radius: inherit; z-index: -1; filter: blur(8px); opacity: 0; transition: opacity 0.3s ease; }
+        .glow-card:hover::after { opacity: 1; }
+        .ai-insight-box { background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-glow { filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.2)); }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body">
+<!-- Header -->
+<header class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline">
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="text-white font-headline font-bold">G</span>
+</div>
+<div>
+<h1 class="font-headline font-bold text-primary text-lg leading-tight">GCEK</h1>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-[0.2em] font-bold">SmartCampus</p>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-10 pb-32 space-y-8">
+<!-- Hero Section -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-outline pb-8">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<div class="w-1.5 h-6 bg-secondary rounded-full"></div>
+<span class="font-headline text-primary text-sm font-bold tracking-widest uppercase">Academic Excellence</span>
+</div>
+<h2 class="font-headline text-4xl font-extrabold text-on-surface">Student Intelligence</h2>
+</div>
+<div class="flex gap-3">
+<span class="px-5 py-2 rounded-lg bg-primary text-white text-xs font-bold shadow-md shadow-primary/10">SEM VI</span>
+</div>
+</section>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-4 space-y-6">
+<div class="ai-insight-box rounded-xl p-6 text-white relative overflow-hidden">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary">psychology</span>
+<span class="font-headline text-secondary text-xs font-bold tracking-[0.2em] uppercase">AI Predictive Analytics</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-tight">Critical Trend Alert</h3>
+<p class="text-blue-100 text-sm mt-3 leading-relaxed">Attendance projection indicates a potential decline to <span class="text-secondary font-bold">68%</span> in Core Eng modules.</p>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<div class="stats-card glow-card rounded-xl p-6 border-l-4 border-l-secondary">
+<span class="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest">Academic Ranking</span>
+<div class="font-headline text-4xl font-extrabold text-on-surface mt-1">#04</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 space-y-6">
+<div class="stats-card glow-card rounded-xl p-8">
+<h3 class="font-headline text-xl font-bold text-on-surface mb-6">Attendance Velocity</h3>
+<div class="relative h-64 w-full">
+<svg class="w-full h-full chart-glow" preserveAspectRatio="none" viewBox="0 0 800 200">
+<line stroke="#f1f5f9" stroke-width="1" x1="0" x2="800" y1="50" y2="50"></line>
+<line stroke="#f1f5f9" stroke-width="1" x1="0" x2="800" y1="100" y2="100"></line>
+<line stroke="#f1f5f9" stroke-width="1" x1="0" x2="800" y1="150" y2="150"></line>
+<path d="M0,160 C100,160 150,140 200,150 S300,60 400,80 S500,130 600,110 S700,80 800,90" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0,160 C100,160 150,140 200,150 S300,60 400,80 S500,130 600,110 S700,80 800,90 L800,200 L0,200 Z" fill="#2563eb" opacity="0.05"></path>
+</svg>
+<div class="flex justify-between mt-6 border-t border-outline pt-4">
+<span class="text-[10px] text-on-surface-variant font-bold">W1</span>
+<span class="text-[10px] text-on-surface-variant font-bold">W4</span>
+<span class="text-[10px] text-on-surface-variant font-bold">W8</span>
+<span class="text-[10px] text-on-surface-variant font-bold">W12</span>
+</div>
+</div>
+</div>
+<div class="stats-card glow-card rounded-xl p-8">
+<h3 class="font-headline text-xl font-bold text-on-surface mb-8">GCEK Curriculum Compliance</h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-on-surface">Data Structures &amp; Algorithms (CS301)</span>
+<span class="text-sm font-bold text-primary">92%</span>
+</div>
+<div class="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-error">Computer Networks &amp; Security (CS303)</span>
+<span class="text-sm font-bold text-error">71%</span>
+</div>
+<div class="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden relative">
+<div class="h-full bg-error rounded-full transition-all duration-1000" style="width: 71%"></div>
+</div>
+<p class="text-[10px] text-error font-medium mt-2 flex items-center gap-1">Action required: 2 lab sessions to reach GCEK 75% threshold</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center h-16 bg-white/95 backdrop-blur-md border-t border-slate-200">
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="index.html">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-bold mt-1">Home</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="scanner.html">
+    <span class="material-symbols-outlined">qr_code_scanner</span>
+    <span class="text-[10px] font-bold mt-1">Scan</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="classes.html">
+    <span class="material-symbols-outlined">menu_book</span>
+    <span class="text-[10px] font-bold mt-1">Classes</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-primary" href="analytics.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+    <span class="text-[10px] font-bold mt-1">Analytics</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="teacher.html">
+    <span class="material-symbols-outlined">person</span>
+    <span class="text-[10px] font-bold mt-1">Faculty</span>
+  </a>
+</nav>
+</body></html>
