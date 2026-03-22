@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GCEK Teacher Dashboard - Prof. S.V. Patil</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#003f87",
+              "primary-container": "#0056b3",
+              "on-primary": "#ffffff",
+              "secondary": "#3a5f94",
+              "tertiary": "#735c00",
+              "surface-container-low": "#f3f4f5",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#e7e8e9",
+              "on-surface-variant": "#424752",
+              "background": "#f8f9fa",
+              "outline-variant": "#c2c6d4",
+              "error": "#ba1a1a",
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+            },
+          },
+        },
+      }
+</script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .editorial-shadow { box-shadow: 0px 20px 40px rgba(25, 28, 29, 0.06); }
+        .glow-blue { box-shadow: 0 0 15px rgba(0, 63, 135, 0.1), 0 0 1px rgba(0, 63, 135, 0.2); border: 1px solid rgba(172, 199, 255, 0.3); }
+        body { min-height: 100dvh; }
+</style>
+</head>
+<body class="bg-background font-body text-[#191c1d] min-h-screen pb-32">
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl h-16 transition-colors border-b border-slate-200">
+<div class="flex justify-between items-center px-6 h-full w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">G</div>
+<h1 class="text-xl font-extrabold tracking-tighter text-blue-900 font-headline">GCE Karad (Faculty)</h1>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-screen-2xl mx-auto">
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-secondary font-semibold tracking-widest uppercase text-xs mb-2 block">Institutional Faculty Portal</span>
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold text-primary tracking-tight">Welcome back, Prof. S.V. Patil.</h2>
+<p class="text-on-surface-variant mt-3 max-w-2xl leading-relaxed">Academic Session 2023-24 • Electronics &amp; Telecommunication Engineering Department</p>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-bold shadow-lg flex items-center gap-2 hover:scale-95 transition-transform">
+<span class="material-symbols-outlined">qr_code_scanner</span> Start Session Attendance
+</button>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-surface-container-low p-8 rounded-xl glow-blue relative overflow-hidden group">
+<div class="relative z-10"><span class="text-primary font-bold text-5xl font-headline">3</span><p class="text-on-surface-variant font-medium mt-2">Active Courses</p></div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl glow-blue relative overflow-hidden group">
+<div class="relative z-10"><span class="text-primary font-bold text-5xl font-headline">185</span><p class="text-on-surface-variant font-medium mt-2">Undergraduate Students</p></div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl glow-blue relative overflow-hidden group">
+<div class="relative z-10"><span class="text-tertiary font-bold text-5xl font-headline">92%</span><p class="text-on-surface-variant font-medium mt-2">Avg Attendance Rate</p></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8 space-y-10">
+<section>
+<h3 class="text-2xl font-headline font-bold text-primary mb-6">My Classes</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl glow-blue editorial-shadow hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-sm text-xs font-bold uppercase">TE - ETC</span></div>
+<h4 class="text-xl font-headline font-bold mb-2">Signals &amp; Systems</h4>
+<p class="text-on-surface-variant text-sm mb-6">Module 4: Laplace Transforms and Applications in Linear Systems.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl glow-blue editorial-shadow hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-sm text-xs font-bold uppercase">SE - ETC</span></div>
+<h4 class="text-xl font-headline font-bold mb-2">Microprocessors</h4>
+<p class="text-on-surface-variant text-sm mb-6">Lab Session: Assembly Language Programming for 8085 Kits.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center h-16 bg-white/95 backdrop-blur-md border-t border-slate-200">
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="index.html">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-bold mt-1">Home</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="scanner.html">
+    <span class="material-symbols-outlined">qr_code_scanner</span>
+    <span class="text-[10px] font-bold mt-1">Scan</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="classes.html">
+    <span class="material-symbols-outlined">menu_book</span>
+    <span class="text-[10px] font-bold mt-1">Classes</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-slate-400 hover:text-primary transition-colors" href="analytics.html">
+    <span class="material-symbols-outlined">leaderboard</span>
+    <span class="text-[10px] font-bold mt-1">Analytics</span>
+  </a>
+  <a class="flex flex-col items-center justify-center w-full text-primary" href="teacher.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+    <span class="text-[10px] font-bold mt-1">Faculty</span>
+  </a>
+</nav>
+</body></html>
